@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="100 білкових рецептів за 15-20 хвилин від Івана Берна. Смачно, просто, без зайвих клопотів. PDF книга за 299 грн.">
+  <title>100 Рецептів за 15 хв | Іван Берн</title>
+
+  <!-- ⚠️ ЗАМІНИТИ: посилання на оплату WayForPay -->
+  <!-- Знайдіть всі місця з href="WAYFORPAY_LINK" та замініть на ваше посилання -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FDF8F0;
+      --cream-dark: #F2E9D8;
+      --terra: #C8522A;
+      --terra-dark: #A8421C;
+      --terra-light: #F0886A;
+      --green: #3D6B4A;
+      --dark: #1A1A1A;
+      --mid: #4A4A4A;
+      --gray: #888;
+      --border: #E8DDD0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    /* ───── NAV ───── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--dark);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--terra); }
+    .btn {
+      display: inline-block;
+      background: var(--terra);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover {
+      background: var(--terra-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(200, 82, 42, 0.35);
+    }
+    .btn-sm { font-size: 13px; padding: 9px 20px; }
+
+    /* ───── HERO ───── */
+    .hero {
+      padding: 72px 24px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+    .hero h1 .accent { color: var(--terra); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--mid);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-cta-wrap { display: flex; flex-direction: column; gap: 16px; }
+    .btn-hero {
+      font-size: 18px;
+      padding: 18px 40px;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(200, 82, 42, 0.3);
+    }
+    .pay-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pay-icons span {
+      font-size: 12px;
+      color: var(--gray);
+    }
+    .pay-badge {
+      background: var(--cream-dark);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--mid);
+      letter-spacing: 0.3px;
+    }
+    .delivery-note {
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Book visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .book-card {
+      position: relative;
+      width: 340px;
+      height: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+    }
+    .book-card:hover { transform: rotate(0deg) scale(1.02); }
+    .book-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .book-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(200,82,42,0.08) 0%, rgba(0,0,0,0.2) 100%);
+    }
+    .book-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: #fff;
+    }
+    .book-badge-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .book-badge-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 4px;
+    }
+    .book-price-tag {
+      position: absolute;
+      top: 20px;
+      right: -10px;
+      background: var(--terra);
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 10px 20px 10px 16px;
+      border-radius: 8px 0 0 8px;
+      box-shadow: 0 4px 16px rgba(200,82,42,0.4);
+    }
+
+    /* ───── STATS BAR ───── */
+    .stats {
+      background: var(--dark);
+      padding: 32px 24px;
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--terra-light);
+      display: block;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+
+    /* ───── SECTIONS COMMON ───── */
+    .section {
+      padding: 80px 24px;
+    }
+    .section-alt { background: var(--cream-dark); }
+    .section-dark {
+      background: #1A1A1A;
+      color: #fff;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 12px;
+    }
+    .section-tag-light { color: var(--terra-light); }
+    .section-title {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--mid);
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+    .section-sub-light { color: rgba(255,255,255,0.6); }
+
+    /* ───── PAIN POINTS ───── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 800px;
+    }
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      transition: box-shadow 0.2s;
+    }
+    .pain-item:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
+    .pain-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pain-text {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+    .pain-cta {
+      margin-top: 40px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, var(--terra) 0%, var(--terra-dark) 100%);
+      border-radius: 20px;
+      color: #fff;
+      max-width: 800px;
+    }
+    .pain-cta p {
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .pain-cta span {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
+    /* ───── FEATURES ───── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.09);
+    }
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ───── REVIEWS ───── */
+    .reviews-track-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .reviews-track-wrap::before,
+    .reviews-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-track-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #1A1A1A, transparent);
+    }
+    .reviews-track-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #1A1A1A, transparent);
+    }
+    .reviews-track {
+      display: flex;
+      gap: 20px;
+      animation: scrollReviews 40s linear infinite;
+      width: max-content;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes scrollReviews {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: 300px;
+      flex-shrink: 0;
+    }
+    .review-stars {
+      color: #F5C842;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .review-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .review-author {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+
+    /* ───── HOW TO BUY ───── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 20px);
+      right: calc(16.66% + 20px);
+      height: 2px;
+      background: linear-gradient(to right, var(--border), var(--border));
+      background-image: repeating-linear-gradient(to right, var(--border) 0, var(--border) 8px, transparent 8px, transparent 16px);
+    }
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+    .step-num {
+      width: 72px;
+      height: 72px;
+      background: var(--terra);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--mid);
+    }
+
+    /* ───── FINAL CTA ───── */
+    .final-cta {
+      text-align: center;
+      padding: 100px 24px;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--cream-dark) 100%);
+    }
+    .final-cta-inner { max-width: 640px; margin: 0 auto; }
+    .final-cta h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 20px;
+    }
+    .final-cta p {
+      font-size: 17px;
+      color: var(--mid);
+      margin-bottom: 40px;
+    }
+    .price-display {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--terra);
+    }
+    .price-currency {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--mid);
+    }
+    .final-pay-icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .guarantee {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ───── FOOTER ───── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+    }
+    footer a {
+      color: var(--terra-light);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    /* ───── FADE IN ANIMATION ───── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 48px 20px 60px;
+        text-align: center;
+      }
+      .hero h1 { font-size: clamp(38px, 10vw, 54px); }
+      .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .hero-cta-wrap { align-items: center; }
+      .pay-icons { justify-content: center; }
+      .hero-visual { order: -1; }
+      .book-card { width: 260px; height: 320px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .pain-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-logo { font-size: 15px; }
+      .btn-hero { font-size: 16px; padding: 16px 32px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">Іван <span>Берн</span></a>
+    <a href="WAYFORPAY_LINK" class="btn btn-sm">Купити — 299 грн</a>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background: var(--cream);">
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-tag">📚 PDF книга · Вже 15+ задоволених покупців</div>
+        <h1>
+          100<br>
+          <span class="accent">Рецептів</span><br>
+          за 15–20 хв
+        </h1>
+        <p class="hero-sub">
+          Білкові страви зі звичайних продуктів з супермаркету — з підрахунком калорій, без зайвих клопотів і дорогих нутріціологів.
+        </p>
+        <div class="hero-cta-wrap">
+          <a href="WAYFORPAY_LINK" class="btn btn-hero">Отримати книгу — 299 грн →</a>
+          <div class="pay-icons">
+            <span>Оплата:</span>
+            <span class="pay-badge">VISA</span>
+            <span class="pay-badge">Mastercard</span>
+            <span class="pay-badge">Apple Pay</span>
+            <span class="pay-badge">Google Pay</span>
+          </div>
+          <div class="delivery-note">
+            ✉️ PDF-посилання на вашу пошту одразу після оплати
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="book-card">
+          <img src="images/book.png" alt="100 Рецептів — книга Іван Берн">
+          <div class="book-card-overlay"></div>
+          <div class="book-badge">
+            <div class="book-badge-title">100 Рецептів</div>
+            <div class="book-badge-sub">Іван Берн · PDF книга</div>
+          </div>
+          <div class="book-price-tag">299 грн</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat-item fade-in">
+        <span class="stat-num">100</span>
+        <div class="stat-label">білкових рецептів</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num">15–20</span>
+        <div class="stat-label">хвилин на приготування</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num">0</span>
+        <div class="stat-label">складних інгредієнтів</div>
+      </div>
+      <div class="stat-item fade-in">
+        <span class="stat-num">15+</span>
+        <div class="stat-label">задоволених покупців</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-tag fade-in">Чи знайомо тобі?</div>
+      <h2 class="section-title fade-in">Кожен день одне й те саме питання:<br>«Що приготувати?»</h2>
+      <p class="section-sub fade-in">Якщо хоча б один пункт про тебе — ця книга для тебе.</p>
+
+      <div class="pain-grid">
+        <div class="pain-item fade-in">
+          <span class="pain-icon">😮‍💨</span>
+          <div class="pain-text">Відкриваєш холодильник і не знаєш що з цього приготувати</div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">⏰</span>
+          <div class="pain-text">Витрачаєш більше часу на пошук рецепту, ніж на саме приготування</div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">💸</span>
+          <div class="pain-text">Купувала дороге меню у нутріціолога і була розчарована результатом</div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">🥗</span>
+          <div class="pain-text">Хочеш їсти смачно та корисно, але без складних інгредієнтів</div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">📊</span>
+          <div class="pain-text">Намагаєшся стежити за калоріями, але рахувати вручну — це пекло</div>
+        </div>
+        <div class="pain-item fade-in">
+          <span class="pain-icon">👨‍👩‍👧</span>
+          <div class="pain-text">Хочеш готувати смачно для всієї родини, але без зайвих зусиль</div>
+        </div>
+      </div>
+
+      <div class="pain-cta fade-in">
+        <p>Є рішення. Просто. Швидко. Смачно.</p>
+        <span>100 рецептів, які вже сьогодні змінять твій підхід до готування</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-tag fade-in">Всередині книги</div>
+      <h2 class="section-title fade-in">Все що тобі потрібно<br>для смачного харчування</h2>
+      <p class="section-sub fade-in">PDF-книга, яка зроблена зручно, красиво та практично.</p>
+
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <span class="feature-icon">🍗</span>
+          <div class="feature-title">100 білкових рецептів</div>
+          <p class="feature-desc">Сніданки, обіди, вечері та перекуси — всі рецепти підібрані з акцентом на білок для здорового харчування.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <span class="feature-icon">⚡</span>
+          <div class="feature-title">15–20 хвилин</div>
+          <p class="feature-desc">Жоден рецепт не займе більше 20 хвилин. Ідеально для зайнятих людей, які хочуть їсти смачно.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <span class="feature-icon">🛒</span>
+          <div class="feature-title">Прості інгредієнти</div>
+          <p class="feature-desc">Тільки те, що є в найближчому супермаркеті. Ніяких екзотичних продуктів і дорогих крамниць.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <span class="feature-icon">📊</span>
+          <div class="feature-title">Підрахунок калорій</div>
+          <p class="feature-desc">Кожен рецепт з готовою КБЖВ. Ти знаєш що їдеш і скільки — без ручного підрахунку.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <span class="feature-icon">📂</span>
+          <div class="feature-title">Розділено по категоріях</div>
+          <p class="feature-desc">Зручна навігація — легко знайти потрібний рецепт. Сніданки, обіди, вечері та снеки окремо.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <span class="feature-icon">✨</span>
+          <div class="feature-title">Інтерактивний PDF</div>
+          <p class="feature-desc">Натискай на категорію і переходь одразу до потрібного розділу. Апетитні фото до кожного рецепту.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section section-dark">
+    <div class="section-inner" style="margin-bottom: 48px;">
+      <div class="section-tag section-tag-light fade-in">Відгуки</div>
+      <h2 class="section-title fade-in" style="color: #fff;">Що кажуть ті,<br>хто вже готує</h2>
+      <p class="section-sub section-sub-light fade-in">Справжні відгуки від покупців</p>
+    </div>
+
+    <div class="reviews-track-wrap">
+      <div class="reviews-track" id="reviewsTrack">
+        <!-- Set 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Ох, ну що за рецепти! Готувала вже вчора вечерю і сніданок сьогодні — дуже смачно, і все вже за мене пораховано. ДЯКУЮ!»</p>
+          <div class="review-author">Iryna S.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Дякую за книжку! Глянула пару сторінок — це 🔥🔥🔥 Саме шукала швидкі рецепти для здорового харчування. Ще й кнопки інтерактивні — дуже зручно!»</p>
+          <div class="review-author">Orysia P.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Виглядає привабливо, нескладно навіть для такого рукожопа, як я, і смачно для усієї родини. Дякую тобі!»</p>
+          <div class="review-author">Val B.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Тут дійсно дуже багато крутих рецептів. Окрема дяка що є підрахунок калорій — книга просто топ.»</p>
+          <div class="review-author">Марина Б.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Книга чудова! Я встигла приготувати за 2 рецептами — дуже смачно, легко в приготуванні і дуже швидко!»</p>
+          <div class="review-author">Юля Б.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Зроблено дуже гарно! Картинки до рецептів виглядають апетитно і це спонукає щось спробувати приготувати.»</p>
+          <div class="review-author">Аня Ш.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Я вальнула коли відкрила ці рецепти! Місяць назад купувала меню у нутріціолога — то мало не плакала від того що вона надіслала. Тут все ТОП!»</p>
+          <div class="review-author">SMM-спеціаліст</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Рецепти це спасіння!! Дуже дякую за цю підбірку, точно буду користуватись, бо вже сил немає щось придумувати. Дякую!!»</p>
+          <div class="review-author">SMM | Targ</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Сьогодні передивилась і я в захваті! Вже знайшла для себе багато корисних рецептів. Ще раз дякую!»</p>
+          <div class="review-author">Oksana V.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Дуже крутий збірник! Гарно оформлений та круто, що розділений на категорії — однозначно буду користуватися.»</p>
+          <div class="review-author">milki_</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Прочитала ваші рецепти — захоплюючі та смачні! Прості поєднання інгредієнтів виглядають дуже апетитно.»</p>
+          <div class="review-author">Diana</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Меню цікаве і легке реально в приготуванні. Ти робиш гарну справу! Дякую.»</p>
+          <div class="review-author">yanka_128</div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Ох, ну що за рецепти! Готувала вже вчора вечерю і сніданок сьогодні — дуже смачно, і все вже за мене пораховано. ДЯКУЮ!»</p>
+          <div class="review-author">Iryna S.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Дякую за книжку! Глянула пару сторінок — це 🔥🔥🔥 Саме шукала швидкі рецепти для здорового харчування. Ще й кнопки інтерактивні — дуже зручно!»</p>
+          <div class="review-author">Orysia P.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Виглядає привабливо, нескладно навіть для такого рукожопа, як я, і смачно для усієї родини. Дякую тобі!»</p>
+          <div class="review-author">Val B.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Тут дійсно дуже багато крутих рецептів. Окрема дяка що є підрахунок калорій — книга просто топ.»</p>
+          <div class="review-author">Марина Б.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Книга чудова! Я встигла приготувати за 2 рецептами — дуже смачно, легко в приготуванні і дуже швидко!»</p>
+          <div class="review-author">Юля Б.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Зроблено дуже гарно! Картинки до рецептів виглядають апетитно і це спонукає щось спробувати приготувати.»</p>
+          <div class="review-author">Аня Ш.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Я вальнула коли відкрила ці рецепти! Місяць назад купувала меню у нутріціолога — то мало не плакала від того що вона надіслала. Тут все ТОП!»</p>
+          <div class="review-author">SMM-спеціаліст</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Рецепти це спасіння!! Дуже дякую за цю підбірку, точно буду користуватись, бо вже сил немає щось придумувати. Дякую!!»</p>
+          <div class="review-author">SMM | Targ</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Сьогодні передивилась і я в захваті! Вже знайшла для себе багато корисних рецептів. Ще раз дякую!»</p>
+          <div class="review-author">Oksana V.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Дуже крутий збірник! Гарно оформлений та круто, що розділений на категорії — однозначно буду користуватися.»</p>
+          <div class="review-author">milki_</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Прочитала ваші рецепти — захоплюючі та смачні! Прості поєднання інгредієнтів виглядають дуже апетитно.»</p>
+          <div class="review-author">Diana</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">«Меню цікаве і легке реально в приготуванні. Ти робиш гарну справу! Дякую.»</p>
+          <div class="review-author">yanka_128</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY -->
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-tag fade-in">Як отримати</div>
+      <h2 class="section-title fade-in">Три простих кроки</h2>
+      <p class="section-sub fade-in">Від оплати до першого рецепту — за лічені хвилини.</p>
+
+      <div class="steps">
+        <div class="step fade-in">
+          <div class="step-num">1</div>
+          <div class="step-title">Натисни «Купити»</div>
+          <p class="step-desc">Перейди до форми оплати — Visa, Mastercard, Apple Pay або Google Pay. Безпечно через WayForPay.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">2</div>
+          <div class="step-title">Отримай на пошту</div>
+          <p class="step-desc">Одразу після успішної оплати на твою електронну пошту прийде посилання на PDF книгу.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">3</div>
+          <div class="step-title">Готуй вже сьогодні</div>
+          <p class="step-desc">Відкривай книгу на телефоні чи комп'ютері та готуй смачно вже сьогодні. Без відкладань.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="final-cta-inner">
+      <div class="section-tag fade-in">Готова починати?</div>
+      <h2 class="fade-in">Твоя кулінарна книга<br>вже чекає на тебе</h2>
+      <p class="fade-in">100 рецептів, які назавжди вирішать питання «що сьогодні приготувати?»</p>
+
+      <div class="price-display fade-in">
+        <span class="price-amount">299</span>
+        <span class="price-currency">грн</span>
+      </div>
+
+      <div class="fade-in">
+        <a href="WAYFORPAY_LINK" class="btn btn-hero">Купити зараз →</a>
+      </div>
+
+      <div class="final-pay-icons fade-in">
+        <span style="font-size: 12px; color: var(--gray);">Оплата через WayForPay:</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">Mastercard</span>
+        <span class="pay-badge">Apple Pay</span>
+        <span class="pay-badge">Google Pay</span>
+      </div>
+
+      <div class="guarantee fade-in">
+        🔒 Безпечна оплата · ✉️ PDF на пошту одразу після оплати
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © 2025 Іван Берн ·
+      <a href="https://www.instagram.com/ivan.burn_" target="_blank" rel="noopener">@ivan.burn_</a>
+    </p>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
