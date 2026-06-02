@@ -387,9 +387,10 @@
     }
     .reviews-track {
       display: flex;
-      gap: 20px;
-      animation: scrollReviews 40s linear infinite;
+      gap: 16px;
+      animation: scrollReviews 55s linear infinite;
       width: max-content;
+      align-items: flex-start;
     }
     .reviews-track:hover { animation-play-state: paused; }
     @keyframes scrollReviews {
@@ -397,28 +398,17 @@
       100% { transform: translateX(-50%); }
     }
     .review-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 28px 24px;
-      width: 300px;
+      width: 220px;
       flex-shrink: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
     }
-    .review-stars {
-      color: #F5C842;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
-    .review-text {
-      font-size: 14px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
-    .review-author {
-      font-size: 13px;
-      color: rgba(255,255,255,0.45);
-      font-weight: 500;
+    .review-card:hover { transform: scale(1.03); }
+    .review-card img {
+      width: 100%;
+      display: block;
     }
 
     /* ───── HOW TO BUY ───── */
@@ -738,128 +728,32 @@
 
     <div class="reviews-track-wrap">
       <div class="reviews-track" id="reviewsTrack">
-        <!-- Set 1 -->
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Ох, ну що за рецепти! Готувала вже вчора вечерю і сніданок сьогодні — дуже смачно, і все вже за мене пораховано. ДЯКУЮ!»</p>
-          <div class="review-author">Iryna S.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Дякую за книжку! Глянула пару сторінок — це 🔥🔥🔥 Саме шукала швидкі рецепти для здорового харчування. Ще й кнопки інтерактивні — дуже зручно!»</p>
-          <div class="review-author">Orysia P.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Виглядає привабливо, нескладно навіть для такого рукожопа, як я, і смачно для усієї родини. Дякую тобі!»</p>
-          <div class="review-author">Val B.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Тут дійсно дуже багато крутих рецептів. Окрема дяка що є підрахунок калорій — книга просто топ.»</p>
-          <div class="review-author">Марина Б.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Книга чудова! Я встигла приготувати за 2 рецептами — дуже смачно, легко в приготуванні і дуже швидко!»</p>
-          <div class="review-author">Юля Б.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Зроблено дуже гарно! Картинки до рецептів виглядають апетитно і це спонукає щось спробувати приготувати.»</p>
-          <div class="review-author">Аня Ш.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Я вальнула коли відкрила ці рецепти! Місяць назад купувала меню у нутріціолога — то мало не плакала від того що вона надіслала. Тут все ТОП!»</p>
-          <div class="review-author">SMM-спеціаліст</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Рецепти це спасіння!! Дуже дякую за цю підбірку, точно буду користуватись, бо вже сил немає щось придумувати. Дякую!!»</p>
-          <div class="review-author">SMM | Targ</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Сьогодні передивилась і я в захваті! Вже знайшла для себе багато корисних рецептів. Ще раз дякую!»</p>
-          <div class="review-author">Oksana V.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Дуже крутий збірник! Гарно оформлений та круто, що розділений на категорії — однозначно буду користуватися.»</p>
-          <div class="review-author">milki_</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Прочитала ваші рецепти — захоплюючі та смачні! Прості поєднання інгредієнтів виглядають дуже апетитно.»</p>
-          <div class="review-author">Diana</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Меню цікаве і легке реально в приготуванні. Ти робиш гарну справу! Дякую.»</p>
-          <div class="review-author">yanka_128</div>
-        </div>
-        <!-- Duplicate set for seamless loop -->
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Ох, ну що за рецепти! Готувала вже вчора вечерю і сніданок сьогодні — дуже смачно, і все вже за мене пораховано. ДЯКУЮ!»</p>
-          <div class="review-author">Iryna S.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Дякую за книжку! Глянула пару сторінок — це 🔥🔥🔥 Саме шукала швидкі рецепти для здорового харчування. Ще й кнопки інтерактивні — дуже зручно!»</p>
-          <div class="review-author">Orysia P.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Виглядає привабливо, нескладно навіть для такого рукожопа, як я, і смачно для усієї родини. Дякую тобі!»</p>
-          <div class="review-author">Val B.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Тут дійсно дуже багато крутих рецептів. Окрема дяка що є підрахунок калорій — книга просто топ.»</p>
-          <div class="review-author">Марина Б.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Книга чудова! Я встигла приготувати за 2 рецептами — дуже смачно, легко в приготуванні і дуже швидко!»</p>
-          <div class="review-author">Юля Б.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Зроблено дуже гарно! Картинки до рецептів виглядають апетитно і це спонукає щось спробувати приготувати.»</p>
-          <div class="review-author">Аня Ш.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Я вальнула коли відкрила ці рецепти! Місяць назад купувала меню у нутріціолога — то мало не плакала від того що вона надіслала. Тут все ТОП!»</p>
-          <div class="review-author">SMM-спеціаліст</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Рецепти це спасіння!! Дуже дякую за цю підбірку, точно буду користуватись, бо вже сил немає щось придумувати. Дякую!!»</p>
-          <div class="review-author">SMM | Targ</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Сьогодні передивилась і я в захваті! Вже знайшла для себе багато корисних рецептів. Ще раз дякую!»</p>
-          <div class="review-author">Oksana V.</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Дуже крутий збірник! Гарно оформлений та круто, що розділений на категорії — однозначно буду користуватися.»</p>
-          <div class="review-author">milki_</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Прочитала ваші рецепти — захоплюючі та смачні! Прості поєднання інгредієнтів виглядають дуже апетитно.»</p>
-          <div class="review-author">Diana</div>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">«Меню цікаве і легке реально в приготуванні. Ти робиш гарну справу! Дякую.»</p>
-          <div class="review-author">yanka_128</div>
-        </div>
+        <div class="review-card"><img src="images/reviews/r1.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r2.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r3.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r4.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r5.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r6.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r7.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r8.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r9.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r10.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r11.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r12.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r13.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r1.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r2.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r3.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r4.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r5.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r6.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r7.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r8.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r9.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r10.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r11.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r12.png" alt="Відгук покупця"></div>
+        <div class="review-card"><img src="images/reviews/r13.png" alt="Відгук покупця"></div>
       </div>
     </div>
   </section>
