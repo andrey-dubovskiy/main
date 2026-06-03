@@ -6,8 +6,15 @@
   <meta name="description" content="100 білкових рецептів за 15-20 хвилин від Івана Берна. Смачно, просто, без зайвих клопотів. PDF книга за 299 грн.">
   <title>100 Рецептів за 15 хв | Іван Берн</title>
 
-  <!-- ⚠️ ЗАМІНИТИ: посилання на оплату WayForPay -->
-  <!-- Знайдіть всі місця з href="https://secure.wayforpay.com/payment/s5de0c251f854" та замініть на ваше посилання -->
+  <!-- Open Graph — для красивого вигляду при розшаруванні в соцмережах -->
+  <meta property="og:title" content="100 Рецептів за 15 хв — Іван Берн">
+  <meta property="og:description" content="100 білкових рецептів з підрахунком калорій. Прості інгредієнти, 15-20 хвилин. PDF книга за 299 грн.">
+  <meta property="og:image" content="images/book.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="100 Рецептів за 15 хв — Іван Берн">
+  <meta name="twitter:description" content="100 білкових рецептів з підрахунком калорій. PDF книга за 299 грн.">
+  <meta name="twitter:image" content="images/book.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -510,6 +517,145 @@
       gap: 6px;
     }
 
+    /* ───── AUTHOR ───── */
+    .author-section {
+      background: var(--cream);
+    }
+    .author-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .author-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terra-light), var(--terra));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      box-shadow: 0 20px 60px rgba(200,82,42,0.25);
+      margin: 0 auto;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .author-handle {
+      font-size: 14px;
+      color: var(--terra);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .author-bio {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .author-facts {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .author-fact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--mid);
+    }
+    .author-fact span:first-child { font-size: 20px; }
+
+    /* ───── FAQ ───── */
+    .faq-list {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 20px 24px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-q:hover { background: var(--cream-dark); }
+    .faq-icon {
+      font-size: 20px;
+      color: var(--terra);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      font-style: normal;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.65;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 24px 20px;
+    }
+
+    /* ───── FLOATING MOBILE CTA ───── */
+    .float-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(253,248,240,0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.1);
+    }
+    .float-cta-price {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--terra);
+    }
+    .float-cta-label {
+      font-size: 12px;
+      color: var(--gray);
+    }
+    .float-cta .btn { flex-shrink: 0; }
+    @media (max-width: 768px) {
+      .float-cta { display: flex; }
+      body { padding-bottom: 80px; }
+      .author-inner { grid-template-columns: 1fr; text-align: center; }
+      .author-facts { justify-content: center; }
+    }
+
     /* ───── FOOTER ───── */
     footer {
       background: var(--dark);
@@ -718,6 +864,28 @@
     </div>
   </section>
 
+  <!-- AUTHOR -->
+  <section class="section author-section">
+    <div class="author-inner">
+      <div class="fade-in">
+        <div class="author-avatar">👨‍🍳</div>
+      </div>
+      <div>
+        <div class="section-tag fade-in">Автор</div>
+        <div class="author-name fade-in">Іван Берн</div>
+        <div class="author-handle fade-in">@ivan.burn_ в Instagram</div>
+        <p class="author-bio fade-in">
+          Захоплений здоровим харчуванням та доводжу, що їсти смачно і корисно — просто. Зібрав 100 улюблених білкових рецептів, які готую сам щодня. Жоден рецепт не потребує особливих кулінарних навичок — тільки бажання їсти смачно.
+        </p>
+        <div class="author-facts fade-in">
+          <div class="author-fact"><span>📚</span><span>100 авторських рецептів</span></div>
+          <div class="author-fact"><span>✅</span><span>Перевірено особисто</span></div>
+          <div class="author-fact"><span>🛒</span><span>Тільки реальні продукти</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- REVIEWS -->
   <section class="section section-dark">
     <div class="section-inner" style="margin-bottom: 48px;">
@@ -785,6 +953,38 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-tag fade-in">Питання та відповіді</div>
+      <h2 class="section-title fade-in">Є питання?<br>Є відповіді</h2>
+      <p class="section-sub fade-in">Найчастіші питання перед покупкою.</p>
+
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <div class="faq-q">Як я отримаю книгу після оплати? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Одразу після успішної оплати на вашу електронну пошту автоматично прийде лист із посиланням на PDF-книгу. Зазвичай це займає до 2 хвилин.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-q">На якому пристрої можна читати? <i class="faq-icon">+</i></div>
+          <div class="faq-a">На будь-якому — смартфон, планшет, комп'ютер, MacBook. PDF відкривається у стандартному переглядачі файлів або Adobe Reader. Інтерактивні кнопки навігації працюють на всіх пристроях.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-q">Я не вмію готувати — чи підійде ця книга? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Так! Рецепти спеціально розроблені для зайнятих людей без кулінарного досвіду. Прості інгредієнти, зрозумілі кроки, без складних технік. Покупці кажуть що готували вже в перший день.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-q">Чи потрібно бути на дієті? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Ні. Це звичайні смачні страви з акцентом на білок — підходять для всієї родини. Підрахунок КБЖВ зручний для тих хто стежить за харчуванням, але не є обов'язковим.</div>
+        </div>
+        <div class="faq-item fade-in">
+          <div class="faq-q">Що якщо лист не прийшов? <i class="faq-icon">+</i></div>
+          <div class="faq-a">Перевірте папку «Спам» або «Промоакції» у вашій пошті. Якщо листа немає — напишіть автору в Instagram @ivan.burn_ із підтвердженням оплати, і книгу надішлють вручну.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="final-cta">
     <div class="final-cta-inner">
@@ -815,6 +1015,15 @@
     </div>
   </section>
 
+  <!-- FLOATING MOBILE CTA -->
+  <div class="float-cta" id="floatCta">
+    <div>
+      <div class="float-cta-price">299 грн</div>
+      <div class="float-cta-label">PDF на пошту одразу</div>
+    </div>
+    <a href="https://secure.wayforpay.com/payment/s5de0c251f854" class="btn">Купити зараз →</a>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <p>
@@ -827,13 +1036,32 @@
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Floating CTA — hide when hero CTA is visible
+    const heroCta = document.querySelector('.btn-hero');
+    const floatCta = document.getElementById('floatCta');
+    if (heroCta && floatCta) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        floatCta.style.transform = entries[0].isIntersecting ? 'translateY(100%)' : 'translateY(0)';
+      }, { threshold: 0.5 });
+      heroObserver.observe(heroCta);
+      floatCta.style.transition = 'transform 0.3s ease';
+      floatCta.style.transform = 'translateY(100%)';
+    }
   </script>
 
 </body>
